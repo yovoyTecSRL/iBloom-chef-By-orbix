@@ -1,22 +1,27 @@
-# Autenticación y credenciales
-## Estado actual
-Este repositorio contiene documentación. No incluye aplicación ejecutable, servidor, rutas HTTP, base de usuarios, middleware de autenticación, sesiones ni emisión o renovación de tokens.
-Por tanto, no existe un flujo de autenticación implementado que describir. No hay integración automática con el complemento de ChatGPT.
+# Autenticacion de los addons importados
+Revision estatica del archivo custom-addons.tar.gz. No es una auditoria completa ni una prueba del servidor.
 
-## Acceso al repositorio
-GitHub administra el acceso de colaboradores al repositorio. La conexión del complemento GitHub utilizada para editar archivos es independiente de cualquier futura autenticación de iBLOOM Chef.
-Este proyecto no recibe ni almacena las credenciales de esa conexión.
+## Componentes
+- addons/ibloom_kiosk/controllers/menu.py: /menu y /kiosco usan auth="public"; consultan productos con sudo().
+- addons/ibloom_kiosk/controllers/main.py: /cocina y las rutas kitchen/orders, kitchen/history y kitchen/state usan auth="user".
+- addons/ibloom_kiosk/controllers/pos_kitchen.py: lectura y cambio de estado de pedidos POS requieren auth="user"; el cambio comprueba el POS configurado como ID 3.
+- addons/ibloom_kiosk/controllers/unified_kitchen.py: all-orders requiere auth="user" y combina pedidos de ventas y POS usando sudo().
+- addons/orbix_portal_shop_redirect/controllers/main.py: delega web_login al controlador estandar de Odoo, lee request.session.uid y redirige al portal a /shop. Segun la consulta del servidor este modulo NO esta instalado.
+- addons/orbix_login_redirect_shop/controllers/main.py: delega al login estandar sin redireccion propia; NO instalado segun la consulta.
 
-## Diseño futuro propuesto — no implementado
-1. El colaborador inicia sesión en la aplicación mediante un proveedor de identidad por definir.
-2. El servidor valida la sesión y el permiso requerido.
-3. El servidor consulta el conocimiento autorizado y, si corresponde, llama a OpenAI u Odoo.
-4. El servidor devuelve la respuesta y registra la operación sin secretos.
-5. El cierre de sesión invalida la sesión según el mecanismo elegido.
+## Flujo
+El navegador solicita la pagina. Odoo procesa auth="public" o auth="user" antes del controlador. Las rutas de cocina esperan una sesion autenticada de Odoo. El controlador consulta los modelos y devuelve HTML o JSON. Los endpoints de estado reciben order_id y state y escriben usando sudo().
+El login, creacion y expiracion de sesiones y manejo de contrasenas pertenecen al nucleo Odoo, que no esta incluido aqui. El commit reportado por el servidor es 1e661df964b1b264c9cef3ab28430d4785be3fda; no se inspecciono ese nucleo en esta revision.
+No hay autenticacion propia de Chef AI ni emision de JWT o claves API en estos addons.
 
-La selección del proveedor, roles, vencimiento, revocación y almacenamiento de sesiones queda pendiente. No hay garantías implementadas sobre esos puntos.
+## Credenciales y tokens
+No se detectaron valores de credenciales incrustados durante la revision de los archivos importados.
+orbix_social_marketing/models/social_account.py define access_token como fields.Char restringido al grupo de administracion social. La vista lo enmascara con password="True"; eso no cifra el dato. El codigo no implementa cifrado, renovacion o revocacion del token. El modulo no esta instalado en ibloom segun la consulta y action_publish indica que el conector Meta no esta habilitado.
+No se importaron datos de cuentas ni valores de tokens, configuracion del servidor o base de datos.
 
-## Credenciales futuras
-Las claves de OpenAI y Odoo deben permanecer en el servidor mediante variables de entorno o un gestor de secretos, fuera del navegador y del historial Git.
-No guardar contraseñas, tokens, archivos .env reales ni exportaciones con credenciales en el repositorio.
-Una instrucción del chat que pida un código no sustituye controles de acceso del servidor.
+## Hallazgos pendientes
+- auth="user" exige login, pero las rutas de cocina no comprueban explicitamente un grupo interno o de cocina antes de elevar permisos con sudo(). Revisar acceso de usuarios portal y alcance por empresa/sitio.
+- Los POST kitchen/state y pos-kitchen/state declaran csrf=False sin mecanismo alternativo visible. Revisar proteccion CSRF.
+- kitchen/state busca sale.order por ID con sudo() sin restringirlo al sitio o empresa.
+- /menu consulta productos con sudo() sin filtro explicito de publicacion web. Revisar exposicion de productos no publicados.
+No se corrigio ni desplego nada: la importacion conserva el codigo recibido.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="group_orbix_social_manager"
+            model="res.groups">
+
+        <field name="name">
+            Orbix Social Marketing Manager
+        </field>
+
+    </record>
+
+</odoo>

@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="kitchen_page" name="iBLOOM Cocina">
+
+<t t-call="website.layout">
+
+<t t-set="title">iBLOOM Cocina</t>
+
+<div id="ibloom-kitchen">
+
+<header class="kds-header">
+
+    <div>
+        <h1>🍳 iBLOOM Cocina</h1>
+        <p>
+            Pedidos en preparación
+        </p>
+    </div>
+
+    <div class="kds-header-actions">
+
+        <span class="kds-online">
+            ● EN LÍNEA
+        </span>
+
+        <span id="kds-clock">
+            --:--
+        </span>
+
+        <button
+            type="button"
+            id="kds-refresh">
+            ↻
+        </button>
+
+        <button
+            type="button"
+            id="kds-fullscreen">
+            ⛶
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="kds-summary">
+
+    <div>
+        <strong id="count-new">
+            <t t-esc="kitchen_counts['new']"/>
+        </strong>
+        nuevos
+    </div>
+
+    <div>
+        <strong id="count-preparing">
+            <t t-esc="kitchen_counts['preparing']"/>
+        </strong>
+        preparando
+    </div>
+
+    <div>
+        <strong id="count-ready">
+            <t t-esc="kitchen_counts['ready']"/>
+        </strong>
+        listos
+    </div>
+
+</div>
+
+
+<main class="kds-board">
+
+<!-- NUEVOS -->
+
+<section class="kds-column">
+
+<header class="kds-column-title">
+
+    <span>🆕 NUEVOS</span>
+
+    <b id="badge-new">
+        <t t-esc="kitchen_counts['new']"/>
+    </b>
+
+</header>
+
+<div
+    id="ibloom-kitchen-new"
+    class="kds-list">
+
+<t t-foreach="kitchen_orders"
+   t-as="order">
+
+<t t-if="order['state'] == 'new'">
+
+<article
+    class="kds-card"
+    t-att-data-order="order['id']">
+
+    <div class="kds-card-head">
+
+        <strong class="kds-order-number">
+            <t t-esc="order['name']"/>
+        </strong>
+
+        <span class="kds-elapsed">
+            <t t-esc="order['elapsed']"/> min
+        </span>
+
+    </div>
+
+    <div class="kds-meta">
+        <t t-esc="order['time']"/>
+        ·
+        <t t-esc="order['partner']"/>
+    </div>
+
+    <div class="kds-mode">
+
+        <t t-if="order['mode'] == 'takeaway'">
+            🥡 PARA LLEVAR
+        </t>
+
+        <t t-else="">
+            🍽️ AQUÍ
+        </t>
+
+    </div>
+
+    <ul class="kds-products">
+
+        <t t-foreach="order['lines']"
+           t-as="line">
+
+            <li>
+                <strong>
+                    <t t-esc="line['qty']"/>×
+                </strong>
+
+                <t t-esc="line['name']"/>
+            </li>
+
+        </t>
+
+    </ul>
+
+    <div class="kds-actions one">
+
+        <button
+            type="button"
+            class="kds-action kds-next"
+            t-att-data-order="order['id']"
+            data-state="preparing">
+
+            🔥 COMENZAR
+
+        </button>
+
+    </div>
+
+</article>
+
+</t>
+
+</t>
+
+</div>
+
+</section>
+
+
+<!-- PREPARANDO -->
+
+<section class="kds-column">
+
+<header class="kds-column-title">
+
+    <span>🔥 PREPARANDO</span>
+
+    <b id="badge-preparing">
+        <t t-esc="kitchen_counts['preparing']"/>
+    </b>
+
+</header>
+
+<div
+    id="ibloom-kitchen-preparing"
+    class="kds-list">
+
+<t t-foreach="kitchen_orders"
+   t-as="order">
+
+<t t-if="order['state'] == 'preparing'">
+
+<article
+    class="kds-card"
+    t-att-data-order="order['id']">
+
+    <div class="kds-card-head">
+
+        <strong class="kds-order-number">
+            <t t-esc="order['name']"/>
+        </strong>
+
+        <span class="kds-elapsed">
+            <t t-esc="order['elapsed']"/> min
+        </span>
+
+    </div>
+
+    <div class="kds-meta">
+        <t t-esc="order['time']"/>
+        ·
+        <t t-esc="order['partner']"/>
+    </div>
+
+    <div class="kds-mode">
+
+        <t t-if="order['mode'] == 'takeaway'">
+            🥡 PARA LLEVAR
+        </t>
+
+        <t t-else="">
+            🍽️ AQUÍ
+        </t>
+
+    </div>
+
+    <ul class="kds-products">
+
+        <t t-foreach="order['lines']"
+           t-as="line">
+
+            <li>
+                <strong>
+                    <t t-esc="line['qty']"/>×
+                </strong>
+
+                <t t-esc="line['name']"/>
+            </li>
+
+        </t>
+
+    </ul>
+
+    <div class="kds-actions">
+
+        <button
+            type="button"
+            class="kds-action kds-prev"
+            t-att-data-order="order['id']"
+            data-state="new">
+
+            ↶
+
+        </button>
+
+        <button
+            type="button"
+            class="kds-action kds-next kds-ready"
+            t-att-data-order="order['id']"
+            data-state="ready">
+
+            ✅ LISTO
+
+        </button>
+
+    </div>
+
+</article>
+
+</t>
+
+</t>
+
+</div>
+
+</section>
+
+
+<!-- LISTOS -->
+
+<section class="kds-column">
+
+<header class="kds-column-title">
+
+    <span>✅ LISTOS</span>
+
+    <b id="badge-ready">
+        <t t-esc="kitchen_counts['ready']"/>
+    </b>
+
+</header>
+
+<div
+    id="ibloom-kitchen-ready"
+    class="kds-list">
+
+<t t-foreach="kitchen_orders"
+   t-as="order">
+
+<t t-if="order['state'] == 'ready'">
+
+<article
+    class="kds-card"
+    t-att-data-order="order['id']">
+
+    <div class="kds-card-head">
+
+        <strong class="kds-order-number">
+            <t t-esc="order['name']"/>
+        </strong>
+
+        <span class="kds-elapsed">
+            <t t-esc="order['elapsed']"/> min
+        </span>
+
+    </div>
+
+    <div class="kds-meta">
+        <t t-esc="order['time']"/>
+        ·
+        <t t-esc="order['partner']"/>
+    </div>
+
+    <ul class="kds-products">
+
+        <t t-foreach="order['lines']"
+           t-as="line">
+
+            <li>
+                <strong>
+                    <t t-esc="line['qty']"/>×
+                </strong>
+
+                <t t-esc="line['name']"/>
+            </li>
+
+        </t>
+
+    </ul>
+
+    <div class="kds-actions">
+
+        <button
+            type="button"
+            class="kds-action kds-prev"
+            t-att-data-order="order['id']"
+            data-state="preparing">
+
+            ↶
+
+        </button>
+
+        <button
+            type="button"
+            class="kds-action kds-next kds-delivered"
+            t-att-data-order="order['id']"
+            data-state="delivered">
+
+            📦 YA SALIÓ
+
+        </button>
+
+    </div>
+
+</article>
+
+</t>
+
+</t>
+
+</div>
+
+</section>
+
+</main>
+
+
+<script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    function reloj() {
+
+        const n =
+            document.getElementById("kds-clock");
+
+        if (!n) return;
+
+        n.textContent =
+            new Date().toLocaleTimeString(
+                "es-CR",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+    }
+
+    reloj();
+
+    setInterval(reloj, 1000);
+
+
+    document.addEventListener(
+        "click",
+        async function (event) {
+
+            const button =
+                event.target.closest(".kds-action");
+
+            if (!button) return;
+
+            button.disabled = true;
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/ibloom/kitchen/state",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+                            body:
+                                JSON.stringify({
+                                    order_id:
+                                        Number(
+                                            button.dataset.order
+                                        ),
+                                    state:
+                                        button.dataset.state
+                                })
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                if (!response.ok || !data.ok) {
+                    throw new Error(
+                        data.error || "Error"
+                    );
+                }
+
+                window.location.reload();
+
+            } catch (error) {
+
+                alert(
+                    "No se pudo actualizar el pedido."
+                );
+
+                button.disabled = false;
+            }
+
+        }
+    );
+
+
+    const refresh =
+        document.getElementById("kds-refresh");
+
+    if (refresh) {
+        refresh.onclick = function () {
+            window.location.reload();
+        };
+    }
+
+
+    const fullscreen =
+        document.getElementById("kds-fullscreen");
+
+    if (fullscreen) {
+
+        fullscreen.onclick =
+            async function () {
+
+                if (!document.fullscreenElement) {
+
+                    await document
+                        .documentElement
+                        .requestFullscreen();
+
+                } else {
+
+                    await document
+                        .exitFullscreen();
+                }
+            };
+    }
+
+
+    // En esta versión robusta:
+    // recarga total cada 5 segundos.
+    // Así siempre toma los pedidos desde Odoo.
+    setTimeout(
+        function () {
+            window.location.reload();
+        },
+        5000
+    );
+
+});
+
+</script>
+
+</div>
+
+</t>
+
+</template>
+
+</odoo>

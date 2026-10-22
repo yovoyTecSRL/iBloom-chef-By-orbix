@@ -1,0 +1,224 @@
+
+/* ==========================================================
+   iBLOOM - SHOP UX
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   BOTONES DEL POPUP DE CARRITO
+   ---------------------------------------------------------- */
+
+.ibloom-cart-actions {
+    display: grid !important;
+    grid-template-columns:
+        1fr 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+.ibloom-cart-actions > a,
+.ibloom-cart-actions > button {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.ibloom-add-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding:
+        10px 16px;
+
+    border-radius:
+        8px;
+
+    background:
+        #171717;
+
+    color:
+        #fff !important;
+
+    text-decoration:
+        none !important;
+
+    font-weight:
+        800;
+
+    text-align:
+        center;
+}
+
+
+/* ----------------------------------------------------------
+   ACCESO COMBOS
+   ---------------------------------------------------------- */
+
+#ibloom-combos-shortcut {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 46px;
+
+    margin:
+        5px 0 15px;
+
+    padding:
+        10px 18px;
+
+    border-radius:
+        12px;
+
+    background:
+        #171717;
+
+    color:
+        white !important;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        16px;
+
+    font-weight:
+        800;
+}
+
+
+/* ----------------------------------------------------------
+   BOTONES FLOTANTES
+   ---------------------------------------------------------- */
+
+#ibloom-shop-floating {
+    position: fixed;
+
+    right: 18px;
+    bottom: 20px;
+
+    z-index: 1050;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 9px;
+
+    pointer-events: none;
+}
+
+.ibloom-float {
+    pointer-events: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 155px;
+
+    min-height: 52px;
+
+    padding:
+        10px 18px;
+
+    border-radius:
+        18px;
+
+    text-decoration:
+        none !important;
+
+    font-size:
+        15px;
+
+    font-weight:
+        900;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.22);
+}
+
+.ibloom-float-more {
+    background:
+        white;
+
+    color:
+        #171717 !important;
+
+    border:
+        1px solid #ddd;
+}
+
+.ibloom-float-combos {
+    background:
+        #171717;
+
+    color:
+        white !important;
+}
+
+
+/* ----------------------------------------------------------
+   TABLETA
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    #ibloom-shop-floating {
+        right: 12px;
+        bottom: 14px;
+    }
+
+    .ibloom-float {
+        min-width: 145px;
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   CELULAR
+   ---------------------------------------------------------- */
+
+@media (max-width: 520px) {
+
+    #ibloom-shop-floating {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+
+        flex-direction: row;
+    }
+
+    .ibloom-float {
+        flex: 1;
+
+        min-width: 0;
+
+        min-height: 50px;
+
+        padding:
+            8px 10px;
+
+        border-radius:
+            15px;
+
+        font-size:
+            14px;
+    }
+
+    .ibloom-cart-actions {
+        grid-template-columns:
+            1fr;
+    }
+
+}

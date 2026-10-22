@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_orbix_social_account_manager,orbix.social.account manager,model_orbix_social_account,orbix_social_marketing.group_orbix_social_manager,1,1,1,1
+access_orbix_social_template_manager,orbix.social.template manager,model_orbix_social_template,orbix_social_marketing.group_orbix_social_manager,1,1,1,1
+access_orbix_social_post_manager,orbix.social.post manager,model_orbix_social_post,orbix_social_marketing.group_orbix_social_manager,1,1,1,1

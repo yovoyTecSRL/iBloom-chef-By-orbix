@@ -1,0 +1,675 @@
+
+/* ==========================================================
+   iBLOOM KIOSK
+   ========================================================== */
+
+#ibloom-kiosk {
+    min-height: 100vh;
+    background: #f6f5f1;
+    color: #1d1d1d;
+}
+
+.ibloom-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    min-height: 94px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 28px;
+    background: rgba(255,255,255,.97);
+    border-bottom: 1px solid #e8e4dc;
+}
+
+.ibloom-logo {
+    font-size: clamp(25px, 3vw, 38px);
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.ibloom-subtitle {
+    margin-top: 3px;
+    font-size: clamp(15px, 1.7vw, 20px);
+}
+
+.ibloom-cart-button {
+    min-width: 92px;
+    min-height: 60px;
+    border: 0;
+    border-radius: 18px;
+    background: #171717;
+    color: white;
+    font-size: 25px;
+}
+
+#ibloom-cart-count {
+    display: inline-flex;
+    min-width: 32px;
+    min-height: 32px;
+    margin-left: 4px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+
+/* CATEGORÍAS */
+
+.ibloom-categories {
+    position: sticky;
+    top: 94px;
+    z-index: 25;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 13px 20px;
+    background: #f6f5f1;
+    scrollbar-width: none;
+}
+
+.ibloom-categories::-webkit-scrollbar {
+    display: none;
+}
+
+.ibloom-category-btn {
+    flex: 0 0 auto;
+    min-height: 52px;
+    padding: 0 22px;
+    border: 1px solid #ddd7cc;
+    border-radius: 18px;
+    background: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* PRODUCTOS */
+
+.ibloom-main {
+    width: min(1600px, 100%);
+    margin: auto;
+    padding: 15px 24px 150px;
+}
+
+.ibloom-category-section {
+    margin-bottom: 45px;
+    scroll-margin-top: 175px;
+}
+
+.ibloom-category-section h2 {
+    margin: 15px 0 20px;
+    font-size: clamp(25px, 3vw, 35px);
+}
+
+.ibloom-product-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.ibloom-product-card {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.ibloom-image-wrap {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #eee;
+}
+
+.ibloom-product-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ibloom-product-info {
+    padding: 16px;
+}
+
+.ibloom-product-info h3 {
+    margin: 0 0 15px;
+    min-height: 50px;
+    font-size: clamp(17px, 1.7vw, 22px);
+    line-height: 1.2;
+}
+
+.ibloom-product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.ibloom-price {
+    font-size: clamp(19px, 2vw, 25px);
+    font-weight: 900;
+}
+
+.ibloom-add-button {
+    min-width: 92px;
+    min-height: 50px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 15px;
+    background: #171717;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+
+/* CARRITO */
+
+.ibloom-overlay {
+    display: none;
+    position: fixed;
+    z-index: 90;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+}
+
+.ibloom-overlay.open {
+    display: block;
+}
+
+.ibloom-cart {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: -520px;
+    width: min(500px, 96vw);
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    transition: right .22s ease;
+    box-shadow: -8px 0 30px rgba(0,0,0,.2);
+}
+
+.ibloom-cart.open {
+    right: 0;
+}
+
+.ibloom-cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px;
+    border-bottom: 1px solid #eee;
+}
+
+.ibloom-cart-header h2 {
+    margin: 0;
+}
+
+#ibloom-cart-close {
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 14px;
+}
+
+.ibloom-cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 22px;
+}
+
+.ibloom-cart-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.ibloom-qty {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.ibloom-qty button {
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 12px;
+    font-size: 21px;
+}
+
+.ibloom-selector-title {
+    padding: 8px 22px 4px;
+    font-weight: 800;
+}
+
+.ibloom-order-mode,
+.ibloom-payment-mode {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    padding: 8px 22px;
+}
+
+.ibloom-mode,
+.ibloom-payment {
+    min-height: 55px;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    background: white;
+    font-weight: 700;
+}
+
+.ibloom-mode.active,
+.ibloom-payment.active {
+    border-color: #171717;
+    background: #171717;
+    color: white;
+}
+
+.ibloom-note {
+    margin: 8px 22px;
+    padding: 12px;
+    min-height: 65px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+}
+
+.ibloom-cart-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 22px;
+    font-size: 25px;
+}
+
+.ibloom-confirm-button {
+    min-height: 64px;
+    margin: 8px 22px 22px;
+    border: 0;
+    border-radius: 18px;
+    background: #171717;
+    color: white;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+
+/* CONFIRMACION */
+
+.ibloom-confirmation {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.65);
+}
+
+.ibloom-confirmation.open {
+    display: flex;
+}
+
+.ibloom-confirmation-card {
+    width: min(520px, 95vw);
+    padding: 35px;
+    text-align: center;
+    border-radius: 28px;
+    background: white;
+}
+
+.ibloom-success {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #171717;
+    color: white;
+    font-size: 40px;
+}
+
+.ibloom-order-number {
+    margin: 18px 0;
+    font-size: clamp(50px, 10vw, 80px);
+    font-weight: 900;
+}
+
+
+/* ==========================================================
+   TABLET LANDSCAPE
+   ========================================================== */
+
+@media (max-width: 1200px) {
+
+    .ibloom-product-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==========================================================
+   TABLET PORTRAIT
+   ========================================================== */
+
+@media (max-width: 850px) {
+
+    .ibloom-header {
+        min-height: 80px;
+        padding: 12px 18px;
+    }
+
+    .ibloom-categories {
+        top: 80px;
+    }
+
+    .ibloom-main {
+        padding: 10px 16px 120px;
+    }
+
+    .ibloom-product-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+}
+
+
+/* ==========================================================
+   CELULAR
+   ========================================================== */
+
+@media (max-width: 520px) {
+
+    .ibloom-header {
+        min-height: 72px;
+        padding: 10px 12px;
+    }
+
+    .ibloom-subtitle {
+        max-width: 210px;
+    }
+
+    .ibloom-cart-button {
+        min-width: 72px;
+        min-height: 52px;
+    }
+
+    .ibloom-categories {
+        top: 72px;
+        padding: 9px 10px;
+    }
+
+    .ibloom-category-btn {
+        min-height: 46px;
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+    .ibloom-main {
+        padding: 8px 10px 100px;
+    }
+
+    .ibloom-product-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .ibloom-product-card {
+        border-radius: 17px;
+    }
+
+    .ibloom-product-info {
+        padding: 11px;
+    }
+
+    .ibloom-product-info h3 {
+        min-height: 42px;
+        font-size: 15px;
+    }
+
+    .ibloom-product-bottom {
+        display: block;
+    }
+
+    .ibloom-price {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+    .ibloom-add-button {
+        width: 100%;
+        min-height: 45px;
+    }
+
+}
+
+
+/* ==========================================================
+   COCINA
+   ========================================================== */
+
+#ibloom-kitchen {
+    min-height: 100vh;
+    padding: 20px;
+    background: #171717;
+    color: white;
+}
+
+.kitchen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kitchen-header h1 {
+    margin: 0;
+    font-size: 34px;
+}
+
+.kitchen-columns {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.kitchen-columns section {
+    min-width: 0;
+}
+
+.kitchen-list {
+    display: grid;
+    gap: 15px;
+}
+
+.kitchen-order {
+    padding: 18px;
+    border-radius: 20px;
+    background: white;
+    color: #171717;
+}
+
+.kitchen-order h3 {
+    margin: 0 0 5px;
+    font-size: 27px;
+}
+
+.kitchen-order ul {
+    padding-left: 20px;
+}
+
+.kitchen-order li {
+    margin-bottom: 6px;
+    font-size: 18px;
+}
+
+.kitchen-action {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 14px;
+    background: #171717;
+    color: white;
+    font-weight: 800;
+}
+
+@media (max-width: 900px) {
+
+    .kitchen-columns {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================================
+   iBLOOM Cocina — Contraste de tickets
+   ========================================================= */
+
+/* Texto general dentro de tarjetas blancas */
+.ibloom-kitchen-card,
+.ibloom-kitchen-ticket,
+.kitchen-card,
+.kitchen-ticket,
+.order-card,
+.ticket-card {
+    color: #111 !important;
+}
+
+/* Títulos, mesa, pedido, tiempo */
+.ibloom-kitchen-card h1,
+.ibloom-kitchen-card h2,
+.ibloom-kitchen-card h3,
+.ibloom-kitchen-card h4,
+.ibloom-kitchen-card h5,
+.ibloom-kitchen-card h6,
+.ibloom-kitchen-card span,
+.ibloom-kitchen-card p,
+.ibloom-kitchen-card div,
+
+.ibloom-kitchen-ticket h1,
+.ibloom-kitchen-ticket h2,
+.ibloom-kitchen-ticket h3,
+.ibloom-kitchen-ticket h4,
+.ibloom-kitchen-ticket h5,
+.ibloom-kitchen-ticket h6,
+.ibloom-kitchen-ticket span,
+.ibloom-kitchen-ticket p,
+
+.kitchen-card h1,
+.kitchen-card h2,
+.kitchen-card h3,
+.kitchen-card h4,
+.kitchen-card h5,
+.kitchen-card h6,
+.kitchen-card span,
+.kitchen-card p,
+
+.kitchen-ticket h1,
+.kitchen-ticket h2,
+.kitchen-ticket h3,
+.kitchen-ticket h4,
+.kitchen-ticket h5,
+.kitchen-ticket h6,
+.kitchen-ticket span,
+.kitchen-ticket p,
+
+.order-card h1,
+.order-card h2,
+.order-card h3,
+.order-card h4,
+.order-card h5,
+.order-card h6,
+.order-card span,
+.order-card p,
+
+.ticket-card h1,
+.ticket-card h2,
+.ticket-card h3,
+.ticket-card h4,
+.ticket-card h5,
+.ticket-card h6,
+.ticket-card span,
+.ticket-card p {
+    color: #111 !important;
+    text-shadow: none !important;
+}
+
+/* Líneas de productos */
+.product-line,
+.order-line,
+.ticket-line,
+.kitchen-line,
+.item-line,
+.order-item,
+.kitchen-item {
+    color: #111 !important;
+}
+
+/* Cantidades */
+.qty,
+.quantity,
+.item-qty,
+.order-qty {
+    color: #111 !important;
+}
+
+/* Cronómetro */
+.timer,
+.elapsed,
+.elapsed-time,
+.order-time,
+.kitchen-time {
+    color: #222 !important;
+}
+
+/* Botones claros */
+button.reception,
+.reception-button,
+.btn-reception,
+button.back,
+.btn-back {
+    color: #111 !important;
+}
+
+/* Botones oscuros: mantener blanco */
+button.ready,
+.ready-button,
+.btn-ready,
+button.done,
+.btn-done,
+button.start,
+.btn-start {
+    color: #fff !important;
+}
+
+/* Corrección específica para tarjetas blancas */
+[style*="background: white"],
+[style*="background-color: white"],
+[style*="background:#fff"],
+[style*="background-color:#fff"] {
+    color: #111;
+}
+

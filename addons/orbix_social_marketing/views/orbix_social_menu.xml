@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem
+        id="menu_orbix_social_root"
+        name="Orbix Social"
+        sequence="80"
+        groups="orbix_social_marketing.group_orbix_social_manager"
+    />
+
+    <menuitem
+        id="menu_orbix_social_posts"
+        name="Publicaciones"
+        parent="menu_orbix_social_root"
+        action="action_orbix_social_posts"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_orbix_social_templates"
+        name="Plantillas"
+        parent="menu_orbix_social_root"
+        action="action_orbix_social_templates"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_orbix_social_accounts"
+        name="Cuentas Sociales"
+        parent="menu_orbix_social_root"
+        action="action_orbix_social_accounts"
+        sequence="30"
+    />
+
+</odoo>

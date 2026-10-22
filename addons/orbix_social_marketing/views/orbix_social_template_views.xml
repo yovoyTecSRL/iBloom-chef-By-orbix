@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_orbix_social_template_list" model="ir.ui.view">
+        <field name="name">orbix.social.template.list</field>
+        <field name="model">orbix.social.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="platform"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_orbix_social_template_form" model="ir.ui.view">
+        <field name="name">orbix.social.template.form</field>
+        <field name="model">orbix.social.template</field>
+        <field name="arch" type="xml">
+            <form string="Plantilla Social">
+                <sheet>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="platform"/>
+                        <field name="active"/>
+                    </group>
+
+                    <group string="Contenido">
+                        <field name="body"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_orbix_social_templates" model="ir.actions.act_window">
+        <field name="name">Plantillas</field>
+        <field name="res_model">orbix.social.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

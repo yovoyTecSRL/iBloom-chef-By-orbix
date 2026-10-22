@@ -1,0 +1,37 @@
+/* ============================================================
+   iBLOOM Cocina / KDS
+   Contraste visual V4
+   ============================================================ */
+
+body.ibloom-kitchen-contrast-active .ibloom-force-dark {
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+}
+
+/* Texto general dentro de tarjetas claras detectadas */
+body.ibloom-kitchen-contrast-active .ibloom-light-kds-card {
+    color: #111111 !important;
+}
+
+body.ibloom-kitchen-contrast-active .ibloom-light-kds-card
+    .ibloom-force-dark {
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+}
+
+/* Los botones conservan su diseño */
+body.ibloom-kitchen-contrast-active
+    .ibloom-light-kds-card button:not(.btn-light),
+body.ibloom-kitchen-contrast-active
+    .ibloom-light-kds-card .btn:not(.btn-light) {
+    -webkit-text-fill-color: currentColor !important;
+}
+
+/* Botones claros: texto negro */
+body.ibloom-kitchen-contrast-active
+    .ibloom-light-kds-card .btn-light {
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+}

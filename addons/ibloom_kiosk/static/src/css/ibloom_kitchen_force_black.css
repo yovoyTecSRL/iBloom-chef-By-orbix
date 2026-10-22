@@ -1,0 +1,166 @@
+/* ==========================================================
+   iBLOOM KDS / COCINA
+   FORCE TEXT CONTRAST V3
+   ========================================================== */
+
+/*
+ * Tickets y tarjetas
+ */
+.ibloom-kitchen-ticket,
+.ibloom-kitchen-card,
+.kitchen-ticket,
+.kitchen-card,
+.kds-ticket,
+.kds-card,
+.order-ticket,
+.order-card,
+.ticket-card {
+    color: #111 !important;
+}
+
+/*
+ * Todo elemento textual dentro de tickets
+ */
+.ibloom-kitchen-ticket *,
+.ibloom-kitchen-card *,
+.kitchen-ticket *,
+.kitchen-card *,
+.kds-ticket *,
+.kds-card *,
+.order-ticket *,
+.order-card *,
+.ticket-card * {
+    color: #111 !important;
+    text-shadow: none !important;
+}
+
+/*
+ * Selectores por nombre parcial de clase.
+ * Esto permite capturar clases internas del módulo.
+ */
+[class*="kitchen"][class*="ticket"] *,
+[class*="kitchen"][class*="card"] *,
+[class*="kds"][class*="ticket"] *,
+[class*="kds"][class*="card"] *,
+[class*="order"][class*="ticket"] *,
+[class*="order"][class*="card"] * {
+    color: #111 !important;
+    text-shadow: none !important;
+}
+
+/*
+ * Productos
+ */
+[class*="product-name"],
+[class*="product_name"],
+[class*="order-line"],
+[class*="order_line"],
+[class*="ticket-line"],
+[class*="ticket_line"],
+[class*="kitchen-line"],
+[class*="kitchen_line"] {
+    color: #111 !important;
+}
+
+[class*="product-name"] *,
+[class*="product_name"] *,
+[class*="order-line"] *,
+[class*="order_line"] *,
+[class*="ticket-line"] *,
+[class*="ticket_line"] *,
+[class*="kitchen-line"] *,
+[class*="kitchen_line"] * {
+    color: #111 !important;
+}
+
+/*
+ * Cantidades
+ */
+[class*="qty"],
+[class*="quantity"],
+[class*="cantidad"] {
+    color: #111 !important;
+    font-weight: 700 !important;
+}
+
+/*
+ * Mesa, número de orden, cliente y hora
+ */
+[class*="table-name"],
+[class*="table_name"],
+[class*="order-name"],
+[class*="order_name"],
+[class*="customer"],
+[class*="client"],
+[class*="timer"],
+[class*="time"],
+[class*="mesa"] {
+    color: #111 !important;
+}
+
+/*
+ * El fondo lavanda/blanquecino que está apareciendo
+ * detrás del texto no debe forzar texto blanco.
+ */
+.bg-light,
+.bg-white,
+[class*="light"],
+[class*="muted"] {
+    --bs-body-color: #111;
+}
+
+/*
+ * EXCEPCIONES:
+ * botones deben conservar su texto blanco.
+ */
+.ibloom-kitchen-ticket button,
+.ibloom-kitchen-card button,
+.kitchen-ticket button,
+.kitchen-card button,
+.kds-ticket button,
+.kds-card button,
+.order-ticket button,
+.order-card button,
+.ticket-card button,
+[class*="kitchen"] button,
+[class*="kds"] button {
+    color: #fff !important;
+}
+
+/*
+ * Botones claros / regresar pueden usar negro.
+ */
+button.btn-light,
+.btn-light,
+button[class*="secondary"],
+button[class*="back"] {
+    color: #111 !important;
+}
+
+/*
+ * Protección específica para tarjetas blancas.
+ */
+.card.bg-white *,
+.card.bg-light *,
+.bg-white.card *,
+.bg-light.card * {
+    color: #111 !important;
+}
+
+/*
+ * Pero no alterar botones coloreados dentro de esas tarjetas.
+ */
+.card.bg-white button,
+.card.bg-light button,
+.bg-white.card button,
+.bg-light.card button {
+    color: #fff !important;
+}
+
+/*
+ * Texto seleccionado por navegador:
+ * sigue siendo legible.
+ */
+::selection {
+    color: #111 !important;
+}

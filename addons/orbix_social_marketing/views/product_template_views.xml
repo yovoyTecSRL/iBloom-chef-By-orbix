@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_template_form_orbix_social" model="ir.ui.view">
+
+        <field name="name">product.template.form.orbix.social</field>
+
+        <field name="model">product.template</field>
+
+        <field name="inherit_id"
+               ref="product.product_template_only_form_view"/>
+
+        <field name="priority">90</field>
+
+        <field name="arch" type="xml">
+
+            <!--
+                Odoo 19:
+                product_template_only_form_view no tiene header.
+                Insertamos el botón directamente al inicio del sheet.
+            -->
+
+            <xpath expr="//sheet" position="inside">
+
+                <div class="d-flex justify-content-end mb-3"
+                     name="orbix_social_actions">
+
+                    <button
+                        name="action_orbix_create_social_post"
+                        string="Crear publicación social"
+                        type="object"
+                        class="btn btn-primary"
+                        icon="fa-share-alt"
+                        groups="orbix_social_marketing.group_orbix_social_manager"
+                    />
+
+                </div>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="seq_ibloom_kiosk_order" model="ir.sequence">
+        <field name="name">Pedido Kiosco iBLOOM</field>
+        <field name="code">ibloom.kiosk.order</field>
+        <field name="prefix">K-</field>
+        <field name="padding">4</field>
+    </record>
+
+</odoo>

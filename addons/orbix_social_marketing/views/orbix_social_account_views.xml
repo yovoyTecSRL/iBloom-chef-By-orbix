@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_orbix_social_account_list" model="ir.ui.view">
+        <field name="name">orbix.social.account.list</field>
+        <field name="model">orbix.social.account</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="platform"/>
+                <field name="page_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_orbix_social_account_form" model="ir.ui.view">
+        <field name="name">orbix.social.account.form</field>
+        <field name="model">orbix.social.account</field>
+        <field name="arch" type="xml">
+            <form string="Cuenta Social">
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="platform"/>
+                            <field name="active"/>
+                        </group>
+
+                        <group string="Conexión">
+                            <field name="page_id"/>
+                            <field name="instagram_account_id"/>
+                        </group>
+                    </group>
+
+                    <group string="Credenciales">
+                        <field name="access_token" password="True"/>
+                    </group>
+
+                    <group string="Notas">
+                        <field name="notes"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_orbix_social_accounts" model="ir.actions.act_window">
+        <field name="name">Cuentas Sociales</field>
+        <field name="res_model">orbix.social.account</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="menu_preview" name="iBLOOM Deli - Menú">
+
+<t t-call="website.layout">
+
+<t t-set="title">iBLOOM Deli</t>
+
+<div id="ibloom-menu">
+
+    <header class="ib-menu-header">
+
+        <div>
+            <h1>iBLOOM Deli</h1>
+            <p>¿Qué quieres disfrutar hoy?</p>
+        </div>
+
+        <a
+            href="/shop/cart"
+            class="ib-cart">
+            🛒 Mi pedido
+        </a>
+
+    </header>
+
+
+    <nav class="ib-categories">
+
+        <t t-foreach="categories"
+           t-as="category">
+
+            <a
+                t-att-href="'#categoria-%s' % category['id']">
+
+                <t t-esc="category['name']"/>
+
+            </a>
+
+        </t>
+
+    </nav>
+
+
+    <main class="ib-menu-main">
+
+        <t t-foreach="categories"
+           t-as="category">
+
+            <section
+                class="ib-section"
+                t-att-id="'categoria-%s' % category['id']">
+
+                <h2>
+                    <t t-esc="category['name']"/>
+                </h2>
+
+                <div class="ib-grid">
+
+                    <t t-foreach="category['products']"
+                       t-as="product">
+
+                        <article class="ib-card">
+
+                            <a t-att-href="product.website_url">
+
+                                <img
+                                    loading="lazy"
+                                    t-att-src="'/web/image/product.template/%s/image_512' % product.id"
+                                    t-att-alt="product.name"/>
+
+                            </a>
+
+                            <div class="ib-card-body">
+
+                                <h3>
+                                    <t t-esc="product.name"/>
+                                </h3>
+
+                                <div class="ib-card-bottom">
+
+                                    <strong>
+                                        ₡<t t-esc="'{:,.0f}'.format(product.list_price)"/>
+                                    </strong>
+
+                                    <a
+                                        class="ib-add"
+                                        t-att-href="product.website_url">
+                                        Pedir
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </t>
+
+                </div>
+
+            </section>
+
+        </t>
+
+
+        <t t-if="not categories">
+
+            <div class="ib-empty">
+
+                <h2>No hay categorías disponibles</h2>
+
+                <p>
+                    Verifica las categorías públicas
+                    de iBLOOM Deli.
+                </p>
+
+            </div>
+
+        </t>
+
+    </main>
+
+</div>
+
+
+<style>
+
+#ibloom-menu {
+    min-height:100vh;
+    background:#f6f5f1;
+}
+
+.ib-menu-header {
+    position:sticky;
+    top:0;
+    z-index:30;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding:18px 28px;
+    background:white;
+    border-bottom:1px solid #e5e2dc;
+}
+
+.ib-menu-header h1 {
+    margin:0;
+    font-size:34px;
+    font-weight:900;
+}
+
+.ib-menu-header p {
+    margin:3px 0 0;
+    font-size:18px;
+}
+
+.ib-cart {
+    padding:15px 20px;
+    border-radius:16px;
+    background:#161616;
+    color:white !important;
+    text-decoration:none !important;
+    font-weight:800;
+}
+
+.ib-categories {
+    position:sticky;
+    top:91px;
+    z-index:25;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:12px 20px;
+    background:#f6f5f1;
+}
+
+.ib-categories a {
+    flex:0 0 auto;
+    padding:12px 19px;
+    border:1px solid #ddd8cf;
+    border-radius:15px;
+    background:white;
+    color:#111;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.ib-menu-main {
+    max-width:1500px;
+    margin:auto;
+    padding:20px 24px 120px;
+}
+
+.ib-section {
+    margin-bottom:45px;
+    scroll-margin-top:165px;
+}
+
+.ib-section h2 {
+    font-size:30px;
+    margin:10px 0 18px;
+}
+
+.ib-grid {
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:20px;
+}
+
+.ib-card {
+    overflow:hidden;
+    min-width:0;
+    background:white;
+    border-radius:22px;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+.ib-card img {
+    display:block;
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+}
+
+.ib-card-body {
+    padding:15px;
+}
+
+.ib-card h3 {
+    margin:0 0 14px;
+    min-height:48px;
+    font-size:19px;
+    line-height:1.25;
+}
+
+.ib-card-bottom {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.ib-card-bottom strong {
+    font-size:22px;
+}
+
+.ib-add {
+    padding:11px 16px;
+    border-radius:13px;
+    background:#171717;
+    color:white !important;
+    text-decoration:none !important;
+    font-weight:800;
+}
+
+.ib-empty {
+    padding:80px 20px;
+    text-align:center;
+}
+
+
+/* TABLET */
+
+@media(max-width:1100px){
+
+    .ib-grid {
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+}
+
+
+/* TABLET VERTICAL */
+
+@media(max-width:800px){
+
+    .ib-grid {
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+}
+
+
+/* CELULAR */
+
+@media(max-width:520px){
+
+    .ib-menu-header {
+        padding:11px 12px;
+    }
+
+    .ib-menu-header h1 {
+        font-size:24px;
+    }
+
+    .ib-menu-header p {
+        font-size:14px;
+    }
+
+    .ib-cart {
+        padding:12px;
+        font-size:14px;
+    }
+
+    .ib-categories {
+        top:72px;
+        padding:9px 10px;
+    }
+
+    .ib-categories a {
+        padding:10px 14px;
+        font-size:14px;
+    }
+
+    .ib-menu-main {
+        padding:10px 10px 100px;
+    }
+
+    .ib-grid {
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+
+    .ib-card {
+        border-radius:16px;
+    }
+
+    .ib-card-body {
+        padding:10px;
+    }
+
+    .ib-card h3 {
+        min-height:40px;
+        font-size:15px;
+    }
+
+    .ib-card-bottom {
+        display:block;
+    }
+
+    .ib-card-bottom strong {
+        display:block;
+        margin-bottom:8px;
+        font-size:18px;
+    }
+
+    .ib-add {
+        display:block;
+        width:100%;
+        text-align:center;
+        padding:10px 5px;
+    }
+
+}
+
+</style>
+
+</t>
+
+</template>
+
+</odoo>

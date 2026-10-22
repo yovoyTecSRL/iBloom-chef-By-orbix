@@ -1,0 +1,557 @@
+
+#ibloom-kitchen {
+    min-height: 100vh;
+    padding: 18px;
+    background: #111;
+    color: #fff;
+}
+
+.kds-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 16px;
+}
+
+.kds-header h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.kds-header p {
+    margin: 4px 0 0;
+    color: #aaa;
+}
+
+.kds-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kds-header-actions button {
+    width: 52px;
+    height: 52px;
+    border: 0;
+    border-radius: 13px;
+    background: #292929;
+    color: white;
+    font-size: 24px;
+}
+
+#kds-clock {
+    font-size: 27px;
+    font-weight: 900;
+    min-width: 90px;
+}
+
+.kds-online {
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #163d22;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.kds-offline {
+    background: #5b1818;
+}
+
+.kds-summary {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.kds-summary > div {
+    padding: 9px 15px;
+    border-radius: 12px;
+    background: #252525;
+    color: #bbb;
+}
+
+.kds-summary strong {
+    color: #fff;
+    font-size: 19px;
+}
+
+.kds-board {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.kds-column {
+    min-width: 0;
+    min-height: 65vh;
+    padding: 12px;
+    border-radius: 18px;
+    background: #1a1a1a;
+}
+
+.kds-column-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 52px;
+    padding: 0 6px 10px;
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.kds-column-title b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 9px;
+    border-radius: 50px;
+    background: #333;
+}
+
+.kds-list {
+    display: grid;
+    gap: 13px;
+}
+
+.kds-card {
+    overflow: hidden;
+    border-radius: 16px;
+    background: #fff;
+    color: #171717;
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,.25);
+}
+
+.kds-card.late {
+    border: 4px solid #cc2929;
+}
+
+.kds-card.warning {
+    border: 4px solid #e39a16;
+}
+
+.kds-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 15px 15px 10px;
+}
+
+.kds-order-number {
+    font-size: 28px;
+    font-weight: 950;
+}
+
+.kds-elapsed {
+    padding: 6px 9px;
+    border-radius: 9px;
+    background: #eee;
+    font-weight: 900;
+}
+
+.kds-card.warning
+.kds-elapsed {
+    background: #f6d38b;
+}
+
+.kds-card.late
+.kds-elapsed {
+    background: #cc2929;
+    color: white;
+}
+
+.kds-meta {
+    padding: 0 15px 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.kds-mode {
+    display: inline-block;
+    margin: 0 15px 6px;
+    padding: 5px 9px;
+    border-radius: 8px;
+    background: #ececec;
+    font-weight: 800;
+}
+
+.kds-products {
+    margin: 8px 0 14px;
+    padding: 0 16px;
+    list-style: none;
+}
+
+.kds-products li {
+    display: flex;
+    gap: 9px;
+    padding: 7px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+}
+
+.kds-qty {
+    min-width: 34px;
+    font-weight: 900;
+}
+
+.kds-actions {
+    display: grid;
+    grid-template-columns:
+        70px 1fr;
+    gap: 8px;
+    padding: 12px;
+    background: #f4f4f4;
+}
+
+.kds-actions.one {
+    grid-template-columns: 1fr;
+}
+
+.kds-action {
+    min-height: 54px;
+    border: 0;
+    border-radius: 12px;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.kds-prev {
+    background: #ddd;
+}
+
+.kds-next {
+    background: #171717;
+    color: #fff;
+}
+
+.kds-ready {
+    background: #237b3c;
+}
+
+.kds-delivered {
+    background: #126aad;
+}
+
+.kds-empty {
+    padding: 45px 15px;
+    text-align: center;
+    border: 2px dashed #333;
+    border-radius: 15px;
+    color: #777;
+}
+
+.kds-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px 4px;
+    color: #888;
+}
+
+.kds-footer button {
+    min-height: 45px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 11px;
+    background: #292929;
+    color: white;
+}
+
+.kds-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.7);
+}
+
+.kds-modal.open {
+    display: flex;
+}
+
+.kds-modal-box {
+    width: min(800px, 96vw);
+    max-height: 85vh;
+    overflow: auto;
+    padding: 20px;
+    border-radius: 18px;
+    background: white;
+    color: #171717;
+}
+
+.kds-modal-box header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kds-modal-box header button {
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 10px;
+}
+
+.kds-history-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 1050px) {
+
+    .kds-board {
+        grid-template-columns: 1fr;
+    }
+
+    .kds-column {
+        min-height: 150px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    #ibloom-kitchen {
+        padding: 10px;
+    }
+
+    .kds-header {
+        align-items: flex-start;
+    }
+
+    .kds-header h1 {
+        font-size: 27px;
+    }
+
+    .kds-online {
+        display: none;
+    }
+
+    #kds-clock {
+        font-size: 20px;
+        min-width: auto;
+    }
+
+    .kds-summary {
+        overflow-x: auto;
+    }
+
+}
+
+/* IBLOOM_KITCHEN_BLACK_TEXT_V2_START
+   ==========================================================
+   iBLOOM Cocina
+   Contraste fuerte para tarjetas/tickets blancos
+   ========================================================== */
+
+/*
+ * IMPORTANTE:
+ * Se limita la corrección al contenido central de /cocina.
+ * Los botones morados conservan texto blanco.
+ */
+
+/* ----------------------------------------------------------
+   TARJETAS / TICKETS
+---------------------------------------------------------- */
+
+.kitchen-card,
+.kitchen-ticket,
+.order-card,
+.order-ticket,
+.ticket,
+.ticket-card,
+.kitchen-order,
+.kitchen-order-card,
+.order-container,
+.order-content,
+.kitchen-content {
+    color: #111111 !important;
+}
+
+/* ----------------------------------------------------------
+   TODOS LOS TEXTOS INTERNOS DE LA TARJETA
+---------------------------------------------------------- */
+
+.kitchen-card :not(button):not(.btn),
+.kitchen-ticket :not(button):not(.btn),
+.order-card :not(button):not(.btn),
+.order-ticket :not(button):not(.btn),
+.ticket-card :not(button):not(.btn),
+.kitchen-order :not(button):not(.btn),
+.kitchen-order-card :not(button):not(.btn) {
+    color: #111111 !important;
+    text-shadow: none !important;
+}
+
+/* ----------------------------------------------------------
+   NOMBRES DE PRODUCTOS
+---------------------------------------------------------- */
+
+.product-name,
+.item-name,
+.order-item-name,
+.kitchen-item-name,
+.line-name,
+.order-line,
+.kitchen-line,
+.ticket-line,
+.order-product,
+.kitchen-product {
+    color: #111111 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* ----------------------------------------------------------
+   CANTIDADES
+---------------------------------------------------------- */
+
+.qty,
+.quantity,
+.product-qty,
+.item-qty,
+.order-qty,
+.kitchen-qty {
+    color: #111111 !important;
+    opacity: 1 !important;
+}
+
+/* ----------------------------------------------------------
+   MESA / ORDEN / CLIENTE / TIEMPO
+---------------------------------------------------------- */
+
+.table-name,
+.table-number,
+.order-number,
+.order-name,
+.customer-name,
+.ticket-header,
+.kitchen-header,
+.timer,
+.elapsed,
+.elapsed-time,
+.order-time,
+.kitchen-time {
+    color: #111111 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* ----------------------------------------------------------
+   ELEMENTOS CON FONDO BLANCO
+---------------------------------------------------------- */
+
+.kitchen-card [style*="background-color: white"],
+.kitchen-card [style*="background-color:white"],
+.kitchen-card [style*="background: white"],
+.kitchen-card [style*="background:white"],
+
+.kitchen-ticket [style*="background-color: white"],
+.kitchen-ticket [style*="background-color:white"],
+
+.order-card [style*="background-color: white"],
+.order-card [style*="background-color:white"],
+
+.ticket-card [style*="background-color: white"],
+.ticket-card [style*="background-color:white"] {
+    color: #111111 !important;
+}
+
+/* ----------------------------------------------------------
+   FONDO CLARO GENERADO POR ODOO / BOOTSTRAP
+---------------------------------------------------------- */
+
+.kitchen-card .text-white,
+.kitchen-ticket .text-white,
+.order-card .text-white,
+.ticket-card .text-white,
+.kitchen-order-card .text-white {
+    color: #111111 !important;
+}
+
+/* ----------------------------------------------------------
+   BOTONES MORADOS / OSCUROS
+   Deben seguir teniendo texto blanco
+---------------------------------------------------------- */
+
+.kitchen-card button,
+.kitchen-ticket button,
+.order-card button,
+.ticket-card button,
+
+.kitchen-card .btn,
+.kitchen-ticket .btn,
+.order-card .btn,
+.ticket-card .btn {
+    opacity: 1 !important;
+}
+
+/* Listo / Preparar / Comenzar */
+.btn-primary,
+.btn-success,
+.btn-ready,
+.ready-button,
+.done-button,
+.start-button,
+.prepare-button,
+button.ready,
+button.done,
+button.start {
+    color: #ffffff !important;
+}
+
+/* Botón morado iBLOOM */
+[style*="background-color: #7"],
+[style*="background:#7"],
+[style*="background: #7"],
+[style*="background-color:#7"] {
+    color: #ffffff !important;
+}
+
+/* ----------------------------------------------------------
+   BOTONES CLAROS
+---------------------------------------------------------- */
+
+.btn-light,
+.btn-secondary-light,
+.reception-button,
+.btn-reception {
+    color: #222222 !important;
+}
+
+/* ----------------------------------------------------------
+   FORZAR LEGIBILIDAD EN ÁREA DE ÓRDENES
+---------------------------------------------------------- */
+
+#kitchen_orders,
+#kitchen-orders,
+.kitchen-orders,
+.orders-grid,
+.kitchen-grid {
+
+    .product-name,
+    .item-name,
+    .order-line,
+    .kitchen-line,
+    .quantity,
+    .qty,
+    .table-name,
+    .order-name,
+    .timer {
+        color: #111111 !important;
+    }
+}
+
+/* IBLOOM_KITCHEN_BLACK_TEXT_V2_END */
+

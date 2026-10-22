@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_orbix_social_post_list" model="ir.ui.view">
+        <field name="name">orbix.social.post.list</field>
+        <field name="model">orbix.social.post</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="scheduled_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_orbix_social_post_form" model="ir.ui.view">
+        <field name="name">orbix.social.post.form</field>
+        <field name="model">orbix.social.post</field>
+
+        <field name="arch" type="xml">
+            <form string="Publicación Social">
+
+                <header>
+
+                    <button
+                        name="action_approve"
+                        string="Aprobar"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+
+                    <button
+                        name="action_schedule"
+                        string="Programar"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state not in ('draft','approved')"
+                    />
+
+                    <button
+                        name="action_publish"
+                        string="Publicar"
+                        type="object"
+                        class="btn-success"
+                        invisible="state not in ('approved','scheduled')"
+                    />
+
+                    <button
+                        name="action_mark_published"
+                        string="Marcar publicado"
+                        type="object"
+                        invisible="state == 'published'"
+                    />
+
+                    <button
+                        name="action_reset_draft"
+                        string="Volver a borrador"
+                        type="object"
+                        invisible="state == 'draft'"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,approved,scheduled,published"
+                    />
+
+                </header>
+
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="website_id"/>
+                        </group>
+
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="published_date"/>
+                        </group>
+                    </group>
+
+                    <group string="Redes Sociales">
+                        <field name="account_ids" widget="many2many_tags"/>
+                    </group>
+
+                    <group string="Contenido">
+
+                        <field
+                            name="image_1920"
+                            widget="image"
+                            options="{'size': [300, 300]}"
+                        />
+
+                        <field name="message"/>
+                        <field name="link_url"/>
+
+                    </group>
+
+                    <group string="Error" invisible="not error_message">
+                        <field name="error_message"/>
+                    </group>
+
+                </sheet>
+
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_orbix_social_post_calendar" model="ir.ui.view">
+        <field name="name">orbix.social.post.calendar</field>
+        <field name="model">orbix.social.post</field>
+
+        <field name="arch" type="xml">
+            <calendar
+                string="Calendario Social"
+                date_start="scheduled_date"
+                color="state"
+            >
+                <field name="name"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+
+    <record id="action_orbix_social_posts" model="ir.actions.act_window">
+        <field name="name">Publicaciones</field>
+        <field name="res_model">orbix.social.post</field>
+        <field name="view_mode">list,calendar,form</field>
+    </record>
+
+</odoo>
