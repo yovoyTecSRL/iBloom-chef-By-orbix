@@ -1,0 +1,8 @@
+{
+  "proyecto": "iBLOOM Chef AI",
+  "repositorio": "https://github.com/yovoyTecSRL/iBloom-chef-By-orbix",
+  "menu": "https://ibloom.sistemasorbix.com/menu",
+  "odoo": "https://ibloom.sistemasorbix.com/odoo/action-485",
+  "modo": "Referencias de navegacion; sin sincronizacion ni despliegue",
+  "autenticacion_odoo": "Utilizar la sesion normal de Odoo en el navegador. No guardar credenciales en Git."
+}
